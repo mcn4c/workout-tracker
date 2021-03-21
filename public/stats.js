@@ -1,5 +1,6 @@
 
-const API = require("./api");
+const API = require("../routes/api");
+const data = require("../models")
 
 
 function generatePalette() {
