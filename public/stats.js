@@ -1,5 +1,7 @@
 
 const API = require("../routes/api");
+
+//do we need to pull in models?
 const data = require("../models")
 
 
