@@ -1,4 +1,3 @@
-const API = require("../routes/api")
 
 const workoutTypeSelect = document.querySelector("#type");
 const cardioForm = document.querySelector(".cardio-form");

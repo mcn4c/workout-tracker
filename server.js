@@ -37,7 +37,7 @@ app.post("/submit", ({body}, res) => {
     });
 });
 
-app.get("/exercises", (req, res) => {
+app.get("/api/exercises", (req, res) => {
   db.Exercise.find({})
     .then(dbExercise => {
       res.json(dbExercise);
@@ -47,7 +47,7 @@ app.get("/exercises", (req, res) => {
     });
 });
 
-app.get("/workout", (req, res) => {
+app.get("/api/workouts", (req, res) => {
   db.Workout.find({})
     .then(dbWorkout => {
       res.json(dbWorkout);
@@ -57,8 +57,19 @@ app.get("/workout", (req, res) => {
     });
 });
 
+app.put("/api/workouts/:id", (req, res) => {
+  db.Workout.findById({_id: req.params.id})
+    .then(dbWorkout => {
+      res.json(dbWorkout);
+    })
+    .catch(err => {
+      res.json(err);
+    });
+});
+
+
 app.get("/populated", (req, res) => {
-  db.Library.find({})
+  db.Workout.find({})
     .populate("exercises")
     .then(dbWorkout => {
       res.json(dbWorkout);

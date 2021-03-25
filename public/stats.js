@@ -1,8 +1,6 @@
 
-const API = require("../routes/api");
 
-//do we need to pull in models?
-const data = require("../models")
+//do we need to pull in models?  don't we need an array called data?
 
 
 function generatePalette() {

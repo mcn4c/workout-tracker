@@ -1,4 +1,6 @@
 const API = {
+
+  //used in workout.js workoutSummary object is involved
   async getLastWorkout() {
     let res;
     try {
@@ -10,6 +12,7 @@ const API = {
 
     return json[json.length - 1];
   },
+  //used in exercise.js data is workoutData object
   async addExercise(data) {
     const id = location.search.split("=")[1];
 
@@ -23,6 +26,8 @@ const API = {
 
     return json;
   },
+
+  //used in exercise.js used in initExercise function assigned to variable workout
   async createWorkout(data = {}) {
     const res = await fetch("/api/workouts", {
       method: "POST",
@@ -35,6 +40,7 @@ const API = {
     return json;
   },
 
+  //used in stats.js
   async getWorkoutsInRange() {
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
@@ -42,4 +48,4 @@ const API = {
     return json;
   },
 };
-module.export = API;
+// module.export = API;
