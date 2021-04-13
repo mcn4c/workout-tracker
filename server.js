@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 //is this correct?
-app.use(require('./public/api'));
+app.use(require('./public/assets/js/api'));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', { useNewUrlParser: true });
 
