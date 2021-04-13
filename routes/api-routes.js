@@ -6,13 +6,13 @@ module.exports = (app) => {
 		db.Workout.aggregate(
 			[
 				{
-					$sort: {
-						day: -1
-					}
+					$sort: { day: -1 }
 				},
+
 				{
 					$limit: 7
 				},
+
 				{
 					$addFields: {
 						totalDuration: {
@@ -20,10 +20,9 @@ module.exports = (app) => {
 						}
 					}
 				},
+
 				{
-					$sort: {
-						day: 1
-					}
+					$sort: { day: 1 }
 				}
 			],
 			(err, result) => {
@@ -43,6 +42,37 @@ module.exports = (app) => {
 			.find({})
 			.then((dbExercise) => {
 				res.json(dbExercise);
+			})
+			.catch((err) => {
+				res.status(400).json(err);
+			});
+	});
+
+	//post workout
+	app.post('/api/workouts', (req, res) => {
+		db.Workout
+			.create(req.body)
+			.then((dbWorkout) => {
+				res.json(dbWorkout);
+			})
+			.catch((err) => {
+				console.log(err);
+				res.json(err);
+			});
+	});
+
+	//update workout
+	app.put('/api/workouts/:id', (req, res) => {
+		db.Workout
+			.findByIdAndUpdate(
+				{ _id: req.params.id },
+				{
+					$push: { exercises: req.body }
+				},
+				{ new: true }
+			)
+			.then((dbWorkout) => {
+				res.json(dbWorkout);
 			})
 			.catch((err) => {
 				res.status(400).json(err);
